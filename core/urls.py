@@ -5,22 +5,9 @@ from drf_yasg import openapi
 
 from .views import *
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Your API Name",
-        default_version='v1',
-        description="API description",
-        terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="contact@example.com"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
+
 
 urlpatterns = [
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('users/', UserListCreateAPIView.as_view(), name='user-list'),
     path('users/<int:pk>/', UserRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 
@@ -30,6 +17,9 @@ urlpatterns = [
     path('topics-documentation/', TopicsDocumentationListCreateAPIView.as_view(), name='topics-documentation-list'),
     path('topics-documentation/<int:pk>/', TopicsDocumentationRetrieveUpdateDestroyAPIView.as_view(),
          name='topics-documentation-detail'),
+
+    path('all-topics-documantation/', AllTopicsDocumentationListCreateAPIView.as_view(), name='all-topics-documantation-list'),
+    path('all-topics-documantation/<int:pk>/', AllTopicsDocumentationRetrieveUpdateDestroyAPIView.as_view(), name='all-topics-documantation-detail'),
 
     path('test/', TestListCreateAPIView.as_view(), name='test-list'),
     path('test/<int:pk>/', TestRetrieveUpdateDestroyAPIView.as_view(), name='test-detail'),

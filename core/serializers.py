@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs
+from .models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs, All_Topics_Documentation
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,6 +29,12 @@ class TopicsDocumentationSerializer(serializers.ModelSerializer):
         model = Topics_Documentation
         fields = '__all__'
 
+
+class AllTopicsDocumentationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = All_Topics_Documentation
+        fields = '__all__'
 
 class TestSerializer(serializers.ModelSerializer):
     class Meta:

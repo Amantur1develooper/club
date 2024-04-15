@@ -1,8 +1,8 @@
 from rest_framework import generics, permissions
 from rest_framework.exceptions import NotFound
-from .models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs
+from .models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs, All_Topics_Documentation
 from .serializers import UserSerializer, DocumentationSerializer, TopicsDocumentationSerializer, TestSerializer, \
-    TopicsTestSerializer, AboutUsSerializer
+    TopicsTestSerializer, AboutUsSerializer, AllTopicsDocumentationSerializer
 
 
 class UserListCreateAPIView(generics.ListCreateAPIView):
@@ -41,6 +41,16 @@ class TopicsDocumentationRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDes
     serializer_class = TopicsDocumentationSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+
+class AllTopicsDocumentationListCreateAPIView(generics.ListCreateAPIView):
+    queryset = All_Topics_Documentation.objects.all()
+    serializer_class = AllTopicsDocumentationSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class AllTopicsDocumentationRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = All_Topics_Documentation.objects.all()
+    serializer_class = AllTopicsDocumentationSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class TestListCreateAPIView(generics.ListCreateAPIView):
     queryset = Test.objects.all()
