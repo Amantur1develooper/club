@@ -81,11 +81,23 @@ class Documentation(models.Model):
 
 class Topics_Documentation(models.Model):
     class Meta:
-        verbose_name = 'тема'
-        verbose_name_plural = 'темы'
+        verbose_name = 'подтема'
+        verbose_name_plural = 'подтемы'
 
-    name = models.CharField(max_length=100, verbose_name='имя')
+    name = models.CharField(max_length=100, verbose_name='имя подтемы')
     document = models.ManyToManyField('Documentation', related_name='topics', verbose_name='документы')
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class All_Topics_Documentation(models.Model):
+    class Meta:
+        verbose_name = 'сборник'
+        verbose_name_plural = 'сборники'
+
+    name = models.CharField(max_length=100, verbose_name='имя сборника')
+    document = models.ManyToManyField('Topics_Documentation', related_name='all_topics', verbose_name='подтемы')
 
     def __str__(self):
         return f'{self.name}'
