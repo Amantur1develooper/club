@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs, All_Topics_Documentation
+from core.models import User, Documentation, Topics_Documentation, Test, Topics_Test, AboutUs, All_Topics_Documentation
 
 
 class UserSerializer(serializers.ModelSerializer):

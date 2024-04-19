@@ -2,10 +2,9 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from .yasg import urlpatterns as url_doc
 
 from .views import *
-
-
 
 urlpatterns = [
     path('users/', UserListCreateAPIView.as_view(), name='user-list'),
@@ -18,8 +17,10 @@ urlpatterns = [
     path('topics-documentation/<int:pk>/', TopicsDocumentationRetrieveUpdateDestroyAPIView.as_view(),
          name='topics-documentation-detail'),
 
-    path('all-topics-documantation/', AllTopicsDocumentationListCreateAPIView.as_view(), name='all-topics-documantation-list'),
-    path('all-topics-documantation/<int:pk>/', AllTopicsDocumentationRetrieveUpdateDestroyAPIView.as_view(), name='all-topics-documantation-detail'),
+    path('all-topics-documantation/', AllTopicsDocumentationListCreateAPIView.as_view(),
+         name='all-topics-documantation-list'),
+    path('all-topics-documantation/<int:pk>/', AllTopicsDocumentationRetrieveUpdateDestroyAPIView.as_view(),
+         name='all-topics-documantation-detail'),
 
     path('test/', TestListCreateAPIView.as_view(), name='test-list'),
     path('test/<int:pk>/', TestRetrieveUpdateDestroyAPIView.as_view(), name='test-detail'),
@@ -30,3 +31,5 @@ urlpatterns = [
     path('about-us/', AboutUsListCreateAPIView.as_view(), name='about-us-list'),
     path('about-us/<int:pk>/', AboutUsRetrieveUpdateDestroyAPIView.as_view(), name='about-us-detail'),
 ]
+
+urlpatterns += url_doc

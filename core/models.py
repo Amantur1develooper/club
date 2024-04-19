@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import uuid
 
 
@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     id = models.CharField(max_length=200, default=uuid.uuid4, unique=True, primary_key=True)
     email = models.EmailField(null=False, max_length=100, unique=True)
     firstname = models.CharField(null=False, max_length=100)
@@ -59,6 +59,10 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+    class Meta:
+        verbose_name = 'Ползователь'
+        verbose_name_plural = 'Пользователи'
 
 
 class Documentation(models.Model):
